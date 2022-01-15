@@ -1,0 +1,59 @@
+# import module random, math, time and simple_colors
+import random
+import time
+import math
+from simple_colors import *
+
+# list of students, determination of students number 
+# this script could also include an input to register the students of the group. Here we don't do it as we won't take the time to register the same list for our session 
+students = ['Andrei', 'Audrey', 'Benoit C', 'Benoit R', 'Catherine', 'Christian', 'Clarisse', 'Emilie', 'Germain', 'Guillaume', 'Laëtitia', 'Marie', 'Patricia', 'Yannick']
+nb_students = len(students)
+
+# programme to create the groups of students
+def groups(nb_students, nb_groups):
+    already_cited = []       # list to store students already assigned to a group
+    counter = 0              # counter for number of students per group  
+    group = 0                # counter for group printing
+    if nb_students % nb_groups == 0:   # condition for equal groups
+        students_per_group = nb_students / nb_groups     # determining of the number of students per group
+        print("{} groupes de {} élèves".format(nb_groups, int(students_per_group)))
+        print()
+        while group < nb_groups:       # loop for the groups
+            group += 1
+            print(magenta("Groupe {}".format(group), 'bold'))   # to name the group with its number
+            while counter < students_per_group:     # loop for the students
+                student = random.choice(students)
+                if student not in already_cited:
+                    print(student)
+                    time.sleep(1)
+                    already_cited.append(student)
+                    counter += 1
+            counter = 0
+            print()
+    else:                             # condition for inequal groups
+        nb_groups_max = nb_students % nb_groups            # determining the number of groups with number of students maximum
+        max_per_group = math.ceil(nb_students/nb_groups)   # determining the number of students maximum per group
+        
+        
+# program calling
+nb_groups = int(input("Entrez le nombre de groupes souhaité : "))
+print()
+groups(nb_students, nb_groups)
+        nb_groups_min = nb_groups - nb_groups_max          # determining the number of groups with number of students minimum
+        min_per_group = math.floor(nb_students/nb_groups)  # determining the number of students minimum per group
+        print("{} groupe(s) de {} élèves et {} groupe(s) de {} élèves".format(nb_groups_max, max_per_group, nb_groups_min, min_per_group))
+        print()
+        while group < nb_groups:      # loop for groups
+            group += 1
+            print(magenta("Groupe {}".format(group), 'bold'))  # to name the group with its number
+            while counter < max_per_group:      # loop for students
+                student = random.choice(students)
+                if student not in already_cited:
+                    print(student)
+                    time.sleep(1)
+                    already_cited.append(student)
+                    counter += 1
+                    if group > nb_groups_max and counter == min_per_group:   # to break loop and create groups with minimum number of students
+                        break
+            counter = 0
+            print()
