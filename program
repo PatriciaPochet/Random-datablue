@@ -5,11 +5,12 @@ import math
 from simple_colors import *
 
 # list of students, determination of students number 
-# this script could also include an input to register the students of the group. Here we don't do it as we won't take the time to register the same list for our session 
+# this script could also include an input to register the students of the group. 
+# here we don't do it as we won't take the time to register the same list for all our work sessions 
 students = ['Andrei', 'Audrey', 'Benoit C', 'Benoit R', 'Catherine', 'Christian', 'Clarisse', 'Emilie', 'Germain', 'Guillaume', 'Laëtitia', 'Marie', 'Patricia', 'Yannick']
 nb_students = len(students)
 
-# programme to create the groups of students
+# program to create the groups of students
 def groups(nb_students, nb_groups):
     already_cited = []       # list to store students already assigned to a group
     counter = 0              # counter for number of students per group  
